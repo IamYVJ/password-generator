@@ -2,250 +2,244 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Password Generator | Privacy-First Client-Side Random Password Tool</title>
-  <meta name="description" content="Generate strong random passwords locally in your browser. This privacy-first password generator is fast, accessible, mobile-friendly, and completely client-side.">
+  <title>Password Generator | Privacy-First Client-Side Tool</title>
+  <meta name="description" content="Generate strong random passwords locally in your browser. Privacy-first, fast, accessible, and completely client-side.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f8fb">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf9ff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
   <link rel="canonical" href="https://your-username.github.io/password-generator/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Password Generator">
-  <meta property="og:description" content="Create strong random passwords in your browser with a privacy-first, fully client-side password generator.">
+  <meta property="og:description" content="Create strong random passwords in your browser. Fully client-side and privacy-first.">
   <meta property="og:url" content="https://your-username.github.io/password-generator/">
   <meta property="og:site_name" content="Password Generator">
-
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Password Generator">
-  <meta name="twitter:description" content="Generate secure passwords locally in your browser with a clean, accessible, privacy-first tool.">
+  <meta name="twitter:description" content="Generate secure passwords locally — nothing leaves your browser.">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Password Generator",
-      "url": "https://your-username.github.io/password-generator/",
-      "description": "A privacy-first random password generator that runs entirely in the browser.",
-      "applicationCategory": "SecurityApplication",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires JavaScript and a modern browser.",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": [
-        "Client-side password generation",
-        "Custom length control",
-        "Uppercase, lowercase, number, and symbol options",
-        "Exclude similar characters",
-        "Clipboard copy support",
-        "Dark and light theme toggle"
-      ]
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Password Generator",
+    "url": "https://your-username.github.io/password-generator/",
+    "description": "A privacy-first random password generator that runs entirely in the browser.",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
   </script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">Privacy-first password tool</p>
-        <h1>Password Generator</h1>
-        <p class="intro">
-          Generate strong random passwords directly in your browser. The tool is fast, lightweight, and fully client-side, so your passwords stay on your device.
-        </p>
-      </div>
+  <!-- ── Topbar ── -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <span class="brand" aria-label="Password Generator">Password Generator</span>
 
       <button
         id="theme-toggle"
-        class="theme-toggle"
+        class="theme-btn"
         type="button"
         aria-pressed="false"
-        aria-label="Switch to dark theme"
+        aria-label="Switch to dark mode"
       >
-        <span class="theme-toggle__icon" id="theme-icon" aria-hidden="true">☾</span>
+        <span id="theme-icon" aria-hidden="true">☾</span>
         <span id="theme-toggle-text">Dark mode</span>
       </button>
     </div>
   </header>
 
+  <!-- ── Hero ── -->
+  <section class="hero" aria-label="Introduction">
+    <div class="container">
+      <p class="eyebrow">Client-side · Private · Instant</p>
+      <h1>Strong passwords, built in your browser.</h1>
+      <p class="hero-sub">
+        Nothing is sent to a server. Nothing is stored. Just fast, local password generation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── App ── -->
   <main id="main-content">
-    <section class="generator-section" aria-labelledby="generator-heading">
-      <div class="container">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <h2 id="generator-heading">Generate a password</h2>
-              <p class="card-intro">
-                Choose your preferred length and character rules, then generate a secure password in one click.
-              </p>
-            </div>
+    <div class="container">
+      <div class="app-wrap">
 
-            <aside class="trust-note" aria-label="Privacy and trust">
-              <p>
-                Passwords are generated locally in your browser and never leave your device. No server is involved, and no password data is stored.
-              </p>
-            </aside>
-          </div>
-
-          <noscript>
-            <p class="noscript-message" role="alert">
-              JavaScript is required for this password generator to create passwords locally in your browser.
-            </p>
-          </noscript>
-
+        <article class="generator-card" aria-label="Password generator">
           <form id="password-form" novalidate>
-            <section class="output-panel" aria-labelledby="output-heading">
-              <div class="section-heading-row">
-                <h3 id="output-heading">Generated password</h3>
+
+            <!-- Two-column body: output | settings -->
+            <div class="generator-body">
+
+              <!-- Left: Output -->
+              <div class="output-col">
+                <div class="output-zone">
+                  <div class="output-header">
+                    <label class="sr-only" for="password-output">Generated password</label>
+                    <span class="zone-label" aria-hidden="true">Generated password</span>
+                    <button id="copy-button" class="copy-btn" type="button">Copy</button>
+                  </div>
+                  <textarea
+                    id="password-output"
+                    class="password-output"
+                    rows="3"
+                    readonly
+                    spellcheck="false"
+                    placeholder="Your password will appear here…"
+                    aria-describedby="output-help status-message validation-message"
+                  ></textarea>
+                  <p id="output-help" class="hint">Click to select all. Use Copy to send to clipboard.</p>
+                </div>
               </div>
 
-              <label for="password-output" class="sr-only">Generated password</label>
-              <textarea
-                id="password-output"
-                class="password-output"
-                rows="2"
-                readonly
-                spellcheck="false"
-                placeholder="Your password will appear here"
-                aria-describedby="output-help status-message validation-message"
-              ></textarea>
+              <!-- Right: Settings -->
+              <div class="settings-col">
 
-              <p id="output-help" class="help-text">
-                Select the password field to review the generated password before copying.
-              </p>
+                <!-- Length -->
+                <div class="setting-block">
+                  <div class="setting-header">
+                    <label for="password-length">Length</label>
+                    <output id="length-value" for="password-length" class="value-badge" aria-live="polite">16</output>
+                  </div>
+                  <input
+                    id="password-length"
+                    name="password-length"
+                    type="range"
+                    min="8"
+                    max="64"
+                    value="16"
+                  >
+                  <div class="range-ends" aria-hidden="true">
+                    <span>8</span>
+                    <span>64</span>
+                  </div>
+                </div>
 
-              <div class="action-row">
-                <button id="generate-button" class="button button-primary" type="submit">
-                  Generate Password
-                </button>
-                <button id="copy-button" class="button button-secondary" type="button">
-                  Copy Password
-                </button>
+                <!-- Character types -->
+                <fieldset class="setting-block">
+                  <legend>Character types</legend>
+                  <div class="chip-group" id="character-type-group">
+                    <label class="chip" for="include-uppercase">
+                      <input id="include-uppercase" name="character-set" type="checkbox" checked>
+                      Uppercase
+                    </label>
+                    <label class="chip" for="include-lowercase">
+                      <input id="include-lowercase" name="character-set" type="checkbox" checked>
+                      Lowercase
+                    </label>
+                    <label class="chip" for="include-numbers">
+                      <input id="include-numbers" name="character-set" type="checkbox" checked>
+                      Numbers
+                    </label>
+                    <label class="chip" for="include-symbols">
+                      <input id="include-symbols" name="character-set" type="checkbox">
+                      Symbols
+                    </label>
+                  </div>
+                </fieldset>
+
+                <!-- Options -->
+                <div class="setting-block">
+                  <p class="setting-label">Options</p>
+                  <div class="chip-group chip-group-col">
+                    <label class="chip chip-block" for="exclude-similar">
+                      <input id="exclude-similar" type="checkbox">
+                      Exclude similar-looking characters
+                    </label>
+                  </div>
+                  <div class="field-wrap">
+                    <label for="extra-characters">Custom characters</label>
+                    <input
+                      id="extra-characters"
+                      name="extra-characters"
+                      type="text"
+                      inputmode="text"
+                      autocomplete="off"
+                      autocapitalize="off"
+                      spellcheck="false"
+                      placeholder="_-@#"
+                      aria-describedby="extra-help"
+                    >
+                    <p id="extra-help" class="hint">Optional — spaces ignored, duplicates removed.</p>
+                  </div>
+                </div>
+
+                <!-- Strength -->
+                <div class="setting-block">
+                  <div class="setting-header">
+                    <span class="zone-label">Strength</span>
+                  </div>
+                  <div class="strength-track" aria-hidden="true">
+                    <span id="strength-meter-fill" class="strength-fill" data-strength="empty"></span>
+                  </div>
+                  <p id="strength-text" class="hint" aria-live="polite">
+                    Estimated strength updates as you change settings.
+                  </p>
+                </div>
+
+                <!-- Feedback -->
+                <div class="setting-block feedback-block">
+                  <p id="status-message" class="status-msg" aria-live="polite" aria-atomic="true"></p>
+                  <p id="validation-message" class="error-msg" aria-live="assertive" aria-atomic="true"></p>
+                </div>
+
               </div>
-            </section>
-
-            <div class="controls-grid">
-              <section class="control-panel" aria-labelledby="length-heading">
-                <div class="section-heading-row">
-                  <h3 id="length-heading">Length</h3>
-                  <output id="length-value" for="password-length" class="length-value" aria-live="polite">16</output>
-                </div>
-
-                <label for="password-length">Password length</label>
-                <input
-                  id="password-length"
-                  name="password-length"
-                  type="range"
-                  min="8"
-                  max="64"
-                  value="16"
-                >
-                <p class="help-text">Choose a length between 8 and 64 characters.</p>
-              </section>
-
-              <fieldset class="control-panel">
-                <legend>Character types</legend>
-
-                <div class="checkbox-list" id="character-type-group">
-                  <label class="checkbox-item" for="include-uppercase">
-                    <input id="include-uppercase" name="character-set" type="checkbox" checked>
-                    <span>Uppercase letters</span>
-                  </label>
-
-                  <label class="checkbox-item" for="include-lowercase">
-                    <input id="include-lowercase" name="character-set" type="checkbox" checked>
-                    <span>Lowercase letters</span>
-                  </label>
-
-                  <label class="checkbox-item" for="include-numbers">
-                    <input id="include-numbers" name="character-set" type="checkbox" checked>
-                    <span>Numbers</span>
-                  </label>
-
-                  <label class="checkbox-item" for="include-symbols">
-                    <input id="include-symbols" name="character-set" type="checkbox">
-                    <span>Special characters</span>
-                  </label>
-                </div>
-              </fieldset>
-
-              <section class="control-panel" aria-labelledby="options-heading">
-                <h3 id="options-heading">Additional options</h3>
-
-                <label class="checkbox-item" for="exclude-similar">
-                  <input id="exclude-similar" type="checkbox">
-                  <span>Exclude similar-looking characters</span>
-                </label>
-
-                <label for="extra-characters">Custom characters to include</label>
-                <input
-                  id="extra-characters"
-                  name="extra-characters"
-                  type="text"
-                  inputmode="text"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                  placeholder="Example: _-@"
-                  aria-describedby="extra-help"
-                >
-                <p id="extra-help" class="help-text">
-                  Optional. Whitespace is ignored, duplicates are removed, and your custom characters are merged into the final character pool.
-                </p>
-              </section>
             </div>
 
-            <div class="feedback-grid">
-              <section class="strength-panel" aria-labelledby="strength-heading">
-                <h3 id="strength-heading">Strength</h3>
-                <div class="strength-meter" aria-hidden="true">
-                  <span id="strength-meter-fill" class="strength-meter__fill" data-strength="empty"></span>
-                </div>
-                <p id="strength-text" class="strength-text">
-                  Estimated strength updates as you change the settings.
-                </p>
-              </section>
+            <!-- Full-width generate button -->
+            <button id="generate-button" class="generate-btn" type="submit">
+              Generate Password
+            </button>
 
-              <section class="message-panel" aria-label="Generator messages">
-                <p id="status-message" class="status-message" aria-live="polite" aria-atomic="true"></p>
-                <p id="validation-message" class="validation-message" aria-live="assertive" aria-atomic="true"></p>
-              </section>
-            </div>
           </form>
         </article>
-      </div>
-    </section>
 
-    <section class="support-section" aria-labelledby="about-heading">
-      <div class="container support-grid">
-        <article class="info-card">
-          <h2 id="about-heading">Why this tool is trustworthy</h2>
-          <p>
-            This generator performs all password creation on the client side. There is no backend processing, no account requirement, and no need to send password data anywhere.
-          </p>
-        </article>
-
-        <article class="info-card">
-          <h2>Practical password guidance</h2>
-          <p>
-            In general, longer passwords with a broader mix of characters are harder to guess. Use the copy button for convenience, and store important credentials in a trusted password manager when possible.
-          </p>
-        </article>
       </div>
-    </section>
+    </div>
   </main>
 
-  <footer class="site-footer">
+  <!-- ── Info section (bottom) ── -->
+  <section class="info-section" aria-label="About this tool">
     <div class="container">
+      <div class="info-grid">
+
+        <article class="info-block">
+          <p class="eyebrow">Privacy</p>
+          <h2>Everything stays on your device</h2>
+          <p>No API calls, no accounts, no logging. The password generation runs entirely inside your browser tab.</p>
+        </article>
+
+        <article class="info-block">
+          <p class="eyebrow">Best practice</p>
+          <h2>Longer is always better</h2>
+          <p>A 20+ character password with mixed types is very difficult to brute-force. Adjust only when a system imposes restrictions.</p>
+        </article>
+
+        <article class="info-block info-block-trust">
+          <p>Passwords are generated locally in your browser and never leave your device.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
       <p>
-        Developed by Yashvardhan Jain (<a href="https://iamyvj.github.io" target="_blank" rel="noopener noreferrer">https://iamyvj.github.io</a>) as a privacy-first, client-side password generator.
+        Developed by
+        <a href="https://iamyvj.github.io" target="_blank" rel="noopener noreferrer">Yashvardhan Jain</a>
+        — privacy-first, client-side password generator.
       </p>
     </div>
   </footer>
