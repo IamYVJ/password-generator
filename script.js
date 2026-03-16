@@ -5,7 +5,7 @@
       uppercase: "ABCDEFGHJKLMNPQRSTUVWXYZ",
       lowercase: "abcdefghijkmnopqrstuvwxyz",
       numbers: "23456789",
-      symbols: "!@#$%^&*()_+{}[]:;<>,.?/~-=|\\"
+      symbols: "!@#$%^&*()_+{}[]:;<>,.?/~-=|"
     };
   
     const SIMILAR_CHARACTERS = new Set(["O", "0", "o", "I", "l", "1", "|"]);

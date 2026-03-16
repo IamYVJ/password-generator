@@ -21,7 +21,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <script type="application/ld+json">
@@ -39,9 +39,9 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#generator">Skip to generator</a>
 
-  <!-- ── Topbar ── -->
+  <!-- ── Fixed topbar ── -->
   <header class="topbar">
     <div class="container topbar-inner">
       <span class="brand" aria-label="Password Generator">Password Generator</span>
@@ -59,26 +59,71 @@
     </div>
   </header>
 
-  <!-- ── Hero ── -->
-  <section class="hero" aria-label="Introduction">
-    <div class="container">
-      <p class="eyebrow">Client-side · Private · Instant</p>
-      <h1>Strong passwords, built in your browser.</h1>
-      <p class="hero-sub">
-        Nothing is sent to a server. Nothing is stored. Just fast, local password generation.
-      </p>
-    </div>
-  </section>
+  <!-- ══════════════════════════════
+       LANDING (fills one viewport)
+  ══════════════════════════════ -->
+  <div class="landing">
 
-  <!-- ── App ── -->
-  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero" aria-label="Introduction">
+      <div class="container">
+        <p class="eyebrow">Client-side · Private · Instant</p>
+        <h1>Strong passwords,<br>built in your browser.</h1>
+        <p class="hero-sub">
+          Nothing is sent to a server. Nothing is stored.<br>
+          Just fast, local password generation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Info cards -->
+    <section class="landing-cards" aria-label="Why use this tool">
+      <div class="container">
+        <div class="cards-grid">
+
+          <article class="landing-card">
+            <p class="card-eyebrow">Privacy</p>
+            <h2>Everything stays on your device</h2>
+            <p>No API calls, no accounts, no logging. The password generation runs entirely inside your browser tab.</p>
+          </article>
+
+          <article class="landing-card">
+            <p class="card-eyebrow">Best practice</p>
+            <h2>Longer is always better</h2>
+            <p>A 20+ character password with mixed types is very difficult to brute-force. Adjust only when a system imposes restrictions.</p>
+          </article>
+
+          <article class="landing-card">
+            <p class="card-eyebrow">Guarantee</p>
+            <h2>Nothing leaves your browser</h2>
+            <p>Passwords are generated locally in your browser and never leave your device, session, or memory.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll CTA -->
+    <div class="scroll-cta-wrap">
+      <a class="scroll-cta" href="#generator" aria-label="Scroll to password generator">
+        <span class="scroll-cta-text">Scroll to Generate Random Password</span>
+        <span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+    </div>
+
+  </div><!-- /landing -->
+
+  <!-- ══════════════════════════════
+       GENERATOR (below the fold)
+  ══════════════════════════════ -->
+  <main id="generator">
     <div class="container">
-      <div class="app-wrap">
+      <div class="generator-wrap">
 
         <article class="generator-card" aria-label="Password generator">
           <form id="password-form" novalidate>
 
-            <!-- Two-column body: output | settings -->
+            <!-- Two-column body -->
             <div class="generator-body">
 
               <!-- Left: Output -->
@@ -111,18 +156,8 @@
                     <label for="password-length">Length</label>
                     <output id="length-value" for="password-length" class="value-badge" aria-live="polite">16</output>
                   </div>
-                  <input
-                    id="password-length"
-                    name="password-length"
-                    type="range"
-                    min="8"
-                    max="64"
-                    value="16"
-                  >
-                  <div class="range-ends" aria-hidden="true">
-                    <span>8</span>
-                    <span>64</span>
-                  </div>
+                  <input id="password-length" name="password-length" type="range" min="8" max="64" value="16">
+                  <div class="range-ends" aria-hidden="true"><span>8</span><span>64</span></div>
                 </div>
 
                 <!-- Character types -->
@@ -142,7 +177,7 @@
                       Numbers
                     </label>
                     <label class="chip" for="include-symbols">
-                      <input id="include-symbols" name="character-set" type="checkbox">
+                      <input id="include-symbols" name="character-set" type="checkbox" checked>
                       Symbols
                     </label>
                   </div>
@@ -153,7 +188,7 @@
                   <p class="setting-label">Options</p>
                   <div class="chip-group chip-group-col">
                     <label class="chip chip-block" for="exclude-similar">
-                      <input id="exclude-similar" type="checkbox">
+                      <input id="exclude-similar" type="checkbox" checked>
                       Exclude similar-looking characters
                     </label>
                   </div>
@@ -182,9 +217,7 @@
                   <div class="strength-track" aria-hidden="true">
                     <span id="strength-meter-fill" class="strength-fill" data-strength="empty"></span>
                   </div>
-                  <p id="strength-text" class="hint" aria-live="polite">
-                    Estimated strength updates as you change settings.
-                  </p>
+                  <p id="strength-text" class="hint" aria-live="polite">Estimated strength updates as you change settings.</p>
                 </div>
 
                 <!-- Feedback -->
@@ -196,7 +229,7 @@
               </div>
             </div>
 
-            <!-- Full-width generate button -->
+            <!-- Generate -->
             <button id="generate-button" class="generate-btn" type="submit">
               Generate Password
             </button>
@@ -206,43 +239,19 @@
 
       </div>
     </div>
-  </main>
 
-  <!-- ── Info section (bottom) ── -->
-  <section class="info-section" aria-label="About this tool">
-    <div class="container">
-      <div class="info-grid">
-
-        <article class="info-block">
-          <p class="eyebrow">Privacy</p>
-          <h2>Everything stays on your device</h2>
-          <p>No API calls, no accounts, no logging. The password generation runs entirely inside your browser tab.</p>
-        </article>
-
-        <article class="info-block">
-          <p class="eyebrow">Best practice</p>
-          <h2>Longer is always better</h2>
-          <p>A 20+ character password with mixed types is very difficult to brute-force. Adjust only when a system imposes restrictions.</p>
-        </article>
-
-        <article class="info-block info-block-trust">
-          <p>Passwords are generated locally in your browser and never leave your device.</p>
-        </article>
-
+    <!-- Footer lives inside main so it's below the generator -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>
+          Developed by
+          <a href="https://iamyvj.github.io" target="_blank" rel="noopener noreferrer">Yashvardhan Jain</a>
+          — privacy-first, client-side password generator.
+        </p>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- ── Footer ── -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>
-        Developed by
-        <a href="https://iamyvj.github.io" target="_blank" rel="noopener noreferrer">Yashvardhan Jain</a>
-        — privacy-first, client-side password generator.
-      </p>
-    </div>
-  </footer>
+  </main>
 
   <script src="script.js"></script>
 </body>
