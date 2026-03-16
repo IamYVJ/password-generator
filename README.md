@@ -1,58 +1,42 @@
 # Password Generator
 
-A privacy-first static password generator that runs entirely in the browser. It is built with semantic HTML, modern vanilla JavaScript, and lightweight responsive CSS for direct deployment on GitHub Pages.
+A privacy-first, fully client-side random password generator built with vanilla HTML, CSS, and JavaScript. Deployed on GitHub Pages with no backend, no framework, and no build step.
+
+Live site → [iamyvj.github.io/password-generator](https://iamyvj.github.io/password-generator/)
+
+---
 
 ## Features
 
-- Generate random passwords locally on the client
-- Adjustable password length slider
-- Uppercase, lowercase, numbers, and special character controls
-- Option to exclude similar-looking characters
-- Optional custom characters input
-- Copy button with Clipboard API support and manual fallback
-- Lightweight strength indicator
-- Dark and light mode with system preference detection and saved user override
-- Mobile-first responsive layout
+### Core
+- Generate cryptographically random passwords using the Web Crypto API (`crypto.getRandomValues`)
+- Adjustable length slider (8–64 characters)
+- Toggle uppercase letters, lowercase letters, numbers, and symbols individually
+- Exclude visually similar characters (O, 0, o, I, l, 1, |)
+- Optional custom character input merged into the generation pool
+- Copy to clipboard with Clipboard API and a manual fallback
+- Lightweight password strength indicator
 
-## Accessibility highlights
+### UI & Experience
+- Full-viewport landing page with hero, three info cards, and an animated scroll CTA
+- DM Serif Display editorial serif for headings; Plus Jakarta Sans for body text
+- Dark and light theme toggle with system preference detection and `localStorage` persistence
+- Smooth scroll to the generator section
+- Strength bar with animated fill transitions
 
-- Semantic HTML5 landmarks and clear heading structure
-- Skip to main content link
-- Explicit labels for all form controls
-- Keyboard-friendly interactions and visible focus states
-- Accessible live regions for copy and validation feedback
-- Strong contrast in both light and dark themes
-- Reduced motion support via `prefers-reduced-motion`
+### Privacy
+- All generation logic runs in the browser — no server, no API, no storage
+- Nothing is logged, transmitted, or persisted beyond the current tab
 
-## SEO highlights
+---
 
-- Descriptive page title and meta description
-- Canonical URL placeholder for GitHub Pages
-- Open Graph and Twitter card metadata
-- Robots meta tag
-- Lightweight JSON-LD structured data for a `WebApplication`
-- Clean, human-readable semantic page structure
+## Tech stack
 
-## Local run instructions
-
-1. Download or clone the repository.
-2. Ensure these four files are in the project root:
-   - `index.html`
-   - `style.css`
-   - `script.js`
-   - `README.md`
-3. Open `index.html` in a browser.
-
-## GitHub Pages deployment
-
-1. Create a repository named `password-generator`.
-2. Add the four project files to the repository root and push to `main`.
-3. In GitHub, open **Settings → Pages**.
-4. Set the source to **Deploy from a branch**.
-5. Choose the `main` branch and the `/root` folder.
-6. Save the settings and wait for the site to publish.
-7. Update the canonical and social URL placeholders in `index.html` to your final GitHub Pages URL.
-
-## Privacy statement
-
-Passwords are generated entirely in the browser and never leave the device. No backend, database, or password storage is used.
+| Layer | Choice |
+|---|---|
+| Markup | Semantic HTML5 |
+| Styles | Vanilla CSS with custom properties |
+| Logic | Vanilla ES6+ JavaScript (IIFE, no modules) |
+| Fonts | Google Fonts (DM Serif Display + Plus Jakarta Sans) |
+| Hosting | GitHub Pages |
+| Dependencies | None |
